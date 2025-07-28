@@ -35,7 +35,6 @@ class Adar1000Rx(TestStep):
 	phase = property(Double, 0)\
 	        .add_attribute(Unit("Degrees", UseEngineeringPrefix=False)) \
 			.add_attribute(Display(Name="Rx Phase", Description="", Group="Adar1000 Channel Settings", Order=3)) \
-			.add_setter()
 
 	lnaBias = property(Double, -1)\
 	        .add_attribute(Unit("V", UseEngineeringPrefix=True)) \
