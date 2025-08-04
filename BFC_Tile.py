@@ -9,6 +9,7 @@ from System import Double, Int32, String
 import OpenTap
 from OpenTap import Display, Unit
 
+from .Adar1000 import *
 import adi
 
 @attribute(Display(Name="BFC Tile", Description="BFC Tile Description", Group="Manta Ray"))

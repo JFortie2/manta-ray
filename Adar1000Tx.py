@@ -38,6 +38,9 @@ class Adar1000Tx(TestStep):
 	paBias = property(Double, -2)\
 	        .add_attribute(Unit("V", UseEngineeringPrefix=True)) \
 			.add_attribute(Display(Name="PA bias level", Description="", Group="Adar1000 Channel Settings", Order=4))
+	
+	ExternalTR = property(bool, True)\
+			.add_attribute(Display(Name="TR Source", Description="Select if external TR used; Unselect for TR SPI", Group="Adar1000 TR Settings", Order=20))
 
 	def __init__(self):
 		super().__init__()
@@ -69,6 +72,8 @@ class Adar1000Tx(TestStep):
 		self.ADAR1000.SetPAvoltage(self.Channel, self.paBias)
 		time.sleep(0.1)
 		self.ADAR1000.SetTxEnable(self.Channel, self.Enable)
+		time.sleep(0.1)
+		self.ADAR1000.SetTRsource(self.Channel, self.ExternalTR)
 		time.sleep(0.1)
 		self.ADAR1000.dev.latch_tx_settings()
 		time.sleep(0.1)

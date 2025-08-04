@@ -41,6 +41,10 @@ class ADAR1000(Dut):
 		super().Close()
 		self.log.Info("ADAR1000 closed")
 
+	def Initialize(self, pa_off=-4.8, pa_on=-4.8, lna_off=-4.8, lna_on=-4.8):
+		self.dev.initialize(pa_off, pa_on, lna_off, lna_on)
+		self.log.Info("ADAR1000: " + str(self.ADAR1000.Name) + " Initialization Complete")
+
 	def SetRxAttenuation(self, Channel, attenuation):
 		self.dev.channels[Channel - 1].rx_attenuator = attenuation
 		self.log.Info("ADAR1000 Channel " + str(Channel) + " Rx Attenuation set to: " + str(attenuation))
@@ -128,3 +132,17 @@ class ADAR1000(Dut):
 	def GetTxEnable(self, Channel):
 		on = self.dev.channels[Channel - 1].tx_enable
 		self.log.Info("ADAR1000 Channel " + str(Channel) + " Tx Enable is: " + str(on))
+
+	def SetTRsource(self, Channel, external):
+		if external:
+			self.dev.tr_source = "external"
+			self.dev.bias_dac_mode = "toggle"
+			self.dev.mode = "disabled"
+		else:
+			self.dev.tr_source = "spi"
+			self.dev.bias_dac_mode = "on"
+		self.log.Info("ADAR1000 Channel " + str(Channel) + " TR Source set to: " + str(external))
+
+	def GetTRsource(self, Channel):
+		external = self.dev.channels[Channel - 1].tr_source
+		self.log.Info("ADAR1000 Channel " + str(Channel) + " TR Source is: " + str(external))
