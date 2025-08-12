@@ -28,6 +28,14 @@ class ADAR1000(Dut):
 	def Open(self):
 		super().Open()
 
+		self.log.Info("ADAR1000 Opened")
+
+	def Close(self):
+		super().Close()
+		self.log.Info("ADAR1000 closed")
+
+
+	def Connect(self):
 		self.dev = adi.adar1000(
 			f"ip:" + self.IPaddress, 
 			chip_id= self.Chip_ID,
@@ -35,15 +43,18 @@ class ADAR1000(Dut):
 			channel_element_map=[2, 1, 4, 3],
 		)
 
-		self.log.Info("ADAR1000 Opened")
-
-	def Close(self):
-		super().Close()
-		self.log.Info("ADAR1000 closed")
+		self.log.Info("ADAR1000 Connected")
 
 	def Initialize(self, pa_off=-4.8, pa_on=-4.8, lna_off=-4.8, lna_on=-4.8):
 		self.dev.initialize(pa_off, pa_on, lna_off, lna_on)
-		self.log.Info("ADAR1000: " + str(self.ADAR1000.Name) + " Initialization Complete")
+		self.dev.rx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
+		self.dev.tx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
+		self.dev.mode = "rx"
+		self.dev.bias_dac_mode = "on"
+		for channel in self.dev.channels:
+            # Default channel enable
+			channel.rx_enable = True
+		self.log.Info("ADAR1000: " + str(self.Name) + " Initialization Complete")
 
 	def SetRxAttenuation(self, Channel, attenuation):
 		self.dev.channels[Channel - 1].rx_attenuator = attenuation
@@ -137,7 +148,6 @@ class ADAR1000(Dut):
 		if external:
 			self.dev.tr_source = "external"
 			self.dev.bias_dac_mode = "toggle"
-			self.dev.mode = "disabled"
 		else:
 			self.dev.tr_source = "spi"
 			self.dev.bias_dac_mode = "on"

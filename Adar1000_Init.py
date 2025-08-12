@@ -12,7 +12,7 @@ from OpenTap import Display, Unit
 
 from .Adar1000 import *
 
-@attribute(Display(Name="Initialize ADAR1000", Description="Set ADAR1000 Tx Description", Group="Manta Ray"))
+@attribute(Display(Name="Initialize ADAR1000", Description="Initialize ADAR1000", Group="Manta Ray"))
 class Adar1000_Init(TestStep):
 
 	# Add your Test Step settings here

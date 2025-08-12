@@ -40,7 +40,7 @@ class Adar1000Tx(TestStep):
 			.add_attribute(Display(Name="PA bias level", Description="", Group="Adar1000 Channel Settings", Order=4))
 	
 	ExternalTR = property(bool, True)\
-			.add_attribute(Display(Name="TR Source", Description="Select if external TR used; Unselect for TR SPI", Group="Adar1000 TR Settings", Order=20))
+			.add_attribute(Display(Name="External TR Source", Description="Select if external TR used; Unselect for TR SPI", Group="Adar1000 TR Settings", Order=20))
 
 	def __init__(self):
 		super().__init__()
