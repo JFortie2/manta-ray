@@ -30,7 +30,7 @@ class Talise(Dut):
 		super().Open()
 
 		self.dev = adi.adrv9009_zu11eg_fmcomms8(
-			f"ip:" + self.IPaddress, 
+			f"ip:" + self.IPaddress,
 		)
 
 		self.log.Info("Talise Opened")

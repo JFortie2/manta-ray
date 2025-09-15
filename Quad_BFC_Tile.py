@@ -10,44 +10,45 @@ import OpenTap
 from OpenTap import Display, Unit
 
 import adi
+from .BFC_Tile import *
 
 @attribute(Display(Name="Quad BFC Tile", Description="Quad BFC Tile Description", Group="Manta Ray"))
-class Quad_BFC_Tile(Dut):
+class Quad_BFC_Tile(BFC_Tile):
 	# Add your DUT settings here
 	IPaddress = property(String, "192.168.2.1")\
 		.add_attribute(OpenTap.Display("IP Address", "The IP Address of the DUT", "DUT Settings"))
-	Chip_ID1 = property(String, "adar1000_csb_0_1_1")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+	Chip_ID = property(String, "adar1000_csb_0_1_1")\
+		.add_attribute(OpenTap.Display("Chip ID1", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID2 = property(String, "adar1000_csb_0_1_2")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID2", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID3 = property(String, "adar1000_csb_0_1_3")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID3", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID4 = property(String, "adar1000_csb_0_1_4")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID4", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID5 = property(String, "adar1000_csb_0_2_1")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID5", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID6 = property(String, "adar1000_csb_0_2_2")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID6", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID7 = property(String, "adar1000_csb_0_2_3")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID7", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID8 = property(String, "adar1000_csb_0_2_4")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID8", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID9 = property(String, "adar1000_csb_1_1_1")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID9", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID10 = property(String, "adar1000_csb_1_1_2")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID10", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID11 = property(String, "adar1000_csb_1_1_3")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID11", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID12 = property(String, "adar1000_csb_1_1_4")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID12", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID13 = property(String, "adar1000_csb_1_2_1")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID13", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID14 = property(String, "adar1000_csb_1_2_2")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID14", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID15 = property(String, "adar1000_csb_1_2_3")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID15", "The Chip ID of the DUT", "DUT Settings"))
 	Chip_ID16 = property(String, "adar1000_csb_1_2_4")\
-		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
+		.add_attribute(OpenTap.Display("Chip ID16", "The Chip ID of the DUT", "DUT Settings"))
 			
 	def __init__(self):
 		super().__init__()
@@ -61,7 +62,7 @@ class Quad_BFC_Tile(Dut):
 		self.dev = adi.adar1000_array(
 			f"ip:" + self.IPaddress, 
 			chip_ids= 	[	
-							self.Chip_ID1, self.Chip_ID2, self.Chip_ID3, self.Chip_ID4, 
+							self.Chip_ID, self.Chip_ID2, self.Chip_ID3, self.Chip_ID4, 
 			  				self.Chip_ID5, self.Chip_ID6, self.Chip_ID7, self.Chip_ID8, 
 							self.Chip_ID9, self.Chip_ID10, self.Chip_ID11, self.Chip_ID12, 
 							self.Chip_ID13, self.Chip_ID14, self.Chip_ID15, self.Chip_ID16

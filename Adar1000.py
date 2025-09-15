@@ -16,7 +16,7 @@ class ADAR1000(Dut):
 	# Add your DUT settings here
 	IPaddress = property(String, "192.168.2.1")\
 		.add_attribute(OpenTap.Display("IP Address", "The IP Address of the DUT", "DUT Settings"))
-	Chip_ID = property(String, "adar1000_csb_1_1")\
+	Chip_ID = property(String, "adar1000_csb_0_1_1")\
 		.add_attribute(OpenTap.Display("Chip ID", "The Chip ID of the DUT", "DUT Settings"))
 			
 	def __init__(self):
