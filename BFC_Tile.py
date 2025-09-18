@@ -127,7 +127,7 @@ class BFC_Tile(ADAR1000):
 		for device in self.dev.devices.values():
 			for channel in device.channels:
 				if channel == self.dev.elements[Channel]:
-					bias = self.dev.lna_bias_on
+					bias = device.lna_bias_on
 					self.log.Info("ADAR1000 Channel " + str(Channel) + " LNA bias voltage is: " + str(bias))
 					return bias
 
@@ -179,14 +179,18 @@ class BFC_Tile(ADAR1000):
 			for channel in device.channels:
 				if channel == self.dev.elements[Channel]:
 					if external:
-						self.dev.tr_source = "external"
-						self.dev.bias_dac_mode = "toggle"
+						device.tr_source = "external"
+						device.bias_dac_mode = "toggle"
 					else:
-						self.dev.tr_source = "spi"
-						self.dev.bias_dac_mode = "on"
+						device.tr_source = "spi"
+						device.bias_dac_mode = "on"
 					self.log.Info("ADAR1000 Channel " + str(Channel) + " TR Source set to: " + str(external))
 					return
 
 	def GetTRsource(self, Channel):
-		external = self.dev.elements[Channel].tr_source
-		self.log.Info("ADAR1000 Channel " + str(Channel) + " TR Source is: " + str(external))
+		for device in self.dev.devices.values():
+			for channel in device.channels:
+				if channel == self.dev.elements[Channel]:
+					external = device.tr_source
+					self.log.Info("ADAR1000 Channel " + str(Channel) + " TR Source is: " + str(external))
+					return
