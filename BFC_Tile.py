@@ -70,14 +70,22 @@ class BFC_Tile(ADAR1000):
 	def Initialize(self, pa_off=-4.8, pa_on=-4.8, lna_off=-4.8, lna_on=-4.8):
 		self.dev.initialize_devices(pa_off, pa_on, lna_off, lna_on)
 		for device in self.dev.devices.values():
-			device.rx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
-			device.tx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
+			#device.rx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
+			#device.tx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
 			device.mode = "rx"
 			device.bias_dac_mode = "on"
 			for channel in device.channels:
 				# Default channel enable
 				channel.rx_enable = True
 		self.log.Info("BFC_Tile: " + str(self.Name) + " Initialization Complete")
+	
+	def GetTemp(self, Channel):
+		for device in self.dev.devices.values():
+			for channel in device.channels:
+				if channel == self.dev.elements[Channel]:
+					temp = (device.temperature-145)/0.8+25
+					self.log.Info("ADAR1000 temp = " + str(temp) + "°C")
+					return temp
 	
 	def SetRxAttenuation(self, Channel, attenuation):
 		self.dev.elements[Channel].rx_attenuator = attenuation

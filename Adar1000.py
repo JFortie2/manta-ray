@@ -8,6 +8,7 @@ import System
 from System import Double, Int32, String
 import OpenTap
 from OpenTap import Display, Unit
+import paramiko
 
 import adi
 
@@ -47,14 +48,19 @@ class ADAR1000(Dut):
 
 	def Initialize(self, pa_off=-4.8, pa_on=-4.8, lna_off=-4.8, lna_on=-4.8):
 		self.dev.initialize(pa_off, pa_on, lna_off, lna_on)
-		self.dev.rx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
-		self.dev.tx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
+		#self.dev.rx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
+		#self.dev.tx_vga_vm_bias_current = 0x16 # these are programming example value, but what is impact???
 		self.dev.mode = "rx"
 		self.dev.bias_dac_mode = "on"
 		for channel in self.dev.channels:
             # Default channel enable
 			channel.rx_enable = True
 		self.log.Info("ADAR1000: " + str(self.Name) + " Initialization Complete")
+
+	def GetTemp(self, Channel):
+		temp = (self.dev.temperature-145)/0.8+25
+		self.log.Info("ADAR1000 temp = " + str(temp) + "°C")
+		return temp
 
 	def SetRxAttenuation(self, Channel, attenuation):
 		self.dev.channels[Channel - 1].rx_attenuator = attenuation
