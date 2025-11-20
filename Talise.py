@@ -91,3 +91,57 @@ class Talise(Dut):
 		ssh.close()
 		time.sleep(1)
 		self.log.Info("PA_ON set to 1 Complete")
+
+	def TDDN_Pulse(self):
+		"""Trigger and configure the TDDN channels for a pulse.
+		This uses a persistent `self.tddn` object if available; otherwise it
+		will try to create one on-demand.
+		"""
+		opentap.debug_this_thread() 
+
+		# ensure we have a tddn instance
+		if self.tddn is None:
+			try:
+				self.tddn = adi.tddn(uri=f"ip:{self.IPaddress}")
+			except Exception as e:
+				self.log.Error(f"Failed to create tddn instance: {e}")
+				return
+
+		tddn = self.tddn
+
+		# set enable and soft sync to 0 before configuring
+		tddn.enable = 0
+		tddn.soft_sync = 0
+
+		# set frame length in ms and burst behaviour
+		frame_length_ms = 0.1  # 100 microseconds
+		tddn.frame_length_ms = frame_length_ms
+		tddn.burst_count = 0  # 0 = repeat indefinitely
+
+		# establish channels constants
+		TDD_TX_OFFLOAD_SYNC = 0
+		TDD_RX_OFFLOAD_SYNC = 1
+		TDD_ENABLE = 2
+		TDD_ADRV9009_RX_EN = 3
+		TDD_ADRV9009_TX_EN = 4
+		TDD_MANTARAY_EN = 5
+		TDD_CHANNEL6 = 6  # PA_ON_0, PA_ON_1
+		TDD_CHANNEL7 = 7  # TR Pulse
+		# PA_ON control on channel 6 and other enables
+		for chan in [TDD_ENABLE, TDD_ADRV9009_TX_EN, TDD_ADRV9009_RX_EN, TDD_MANTARAY_EN, TDD_CHANNEL6]:
+			tddn.channel[chan].on_ms = 0
+			tddn.channel[chan].off_ms = 0
+			tddn.channel[chan].polarity = 1
+			tddn.channel[chan].enable = 1
+
+		# configure TR pulse channel (inverse polarity)
+		for chan in [TDD_CHANNEL7]:
+			tddn.channel[chan].on_ms = 0
+			tddn.channel[chan].off_ms = 0.005
+			tddn.channel[chan].polarity = 0
+			tddn.channel[chan].enable = 1
+
+		
+		# enable tddn
+		tddn.enable = 1
+		tddn.soft_sync = 1
