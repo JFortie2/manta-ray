@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestPlan type="OpenTap.TestPlan">
+  <Steps>
+    <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="9a4c4790-cae5-46a2-a74f-47bf115d1c39">
+      <Name Metadata="Step Name">Init</Name>
+      <ChildTestSteps>
+        <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="dfe7345f-839b-46ca-bbbf-2fd4292c6f78">
+          <Name Metadata="Step Name">Turn On</Name>
+          <ChildTestSteps>
+            <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="bb1b3257-b836-4a21-ac79-62788e3d3e8e" OpenTap.Visibility="Visible">
+              <Name Metadata="Step Name">Error Check</Name>
+              <ChildTestSteps>
+                <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="0e188adb-d0fe-46e2-9428-1fd2af8d6358">
+                  <Name Metadata="Step Name">Turn on ADAR1000s</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureVoltage" Id="87211ee7-e3d7-49aa-9c50-7018483f2b4b">
+                      <Volt>4</Volt>
+                      <IsControlledByParent>false</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                      <Name Metadata="Step Name">Configure 4V</Name>
+                      <ChildTestSteps>
+                        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureOverCurrent" Id="dc09e997-9d15-49d7-9726-857c4dea14c8">
+                          <Current>1.5</Current>
+                          <IsControlledByParent>true</IsControlledByParent>
+                          <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                          <Name Metadata="Step Name">Configure OverCurrent</Name>
+                          <ChildTestSteps />
+                        </TestStep>
+                        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="00eb6fe5-8359-4a37-b73a-83ae7b1dd1b2">
+                          <OutputState>On</OutputState>
+                          <IsControlledByParent>true</IsControlledByParent>
+                          <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                          <Name Metadata="Step Name">Configure State</Name>
+                          <ChildTestSteps />
+                        </TestStep>
+                      </ChildTestSteps>
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureVoltage" Id="935a2ffa-0d5d-4f62-8a5e-cbfce869e06f">
+                      <Volt>-6</Volt>
+                      <IsControlledByParent>false</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+                      <Name Metadata="Step Name">Configure -6V</Name>
+                      <ChildTestSteps>
+                        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureOverCurrent" Id="f6e0903f-8ba6-4828-a970-a6127474f454">
+                          <Current>0.5</Current>
+                          <IsControlledByParent>true</IsControlledByParent>
+                          <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+                          <Name Metadata="Step Name">Configure OverCurrent</Name>
+                          <ChildTestSteps />
+                        </TestStep>
+                        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="1b19f877-a3af-4392-bdae-7859d5553074">
+                          <OutputState>On</OutputState>
+                          <IsControlledByParent>true</IsControlledByParent>
+                          <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+                          <Name Metadata="Step Name">Configure State</Name>
+                          <ChildTestSteps />
+                        </TestStep>
+                      </ChildTestSteps>
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="49312aa2-45a6-46f2-a0c3-33400cedcd42">
+                  <Name Metadata="Step Name">Verify Currents</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="870d2d2e-46f6-4611-afb9-b9139027b7f1">
+                      <Min>0.075</Min>
+                      <Max>1</Max>
+                      <TestVerdict>Pass</TestVerdict>
+                      <TestName>Query 4V Current (loose)</TestName>
+                      <Units>A</Units>
+                      <IsControlledByParent>false</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                      <Name Metadata="Step Name">Query 4V Current (loose)</Name>
+                      <ChildTestSteps />
+                      <BreakConditions>BreakOnFail</BreakConditions>
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="177db05d-212b-4e7b-a8a3-5c2f0bd1b1d0">
+                      <Min>0.015</Min>
+                      <Max>0.15</Max>
+                      <TestVerdict>Pass</TestVerdict>
+                      <TestName>Query -6V Current</TestName>
+                      <Units>A</Units>
+                      <IsControlledByParent>false</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+                      <Name Metadata="Step Name">Query -6V Current</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                  <BreakConditions>BreakOnError, BreakOnFail</BreakConditions>
+                </TestStep>
+                <TestStep type="Manta Ray.Reboot_Talise.Reboot_Talise" Id="456a26d0-7504-42df-ae23-262926b83869">
+                  <Talise Source="OpenTap.DutSettings">Talise</Talise>
+                  <Name Metadata="Step Name">Reboot Talise</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="35a87e4b-aad2-4e82-87d0-eef5e6edcc5d">
+                  <DelaySecs>5</DelaySecs>
+                  <Name Metadata="Step Name">Delay</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="Manta Ray.Adar1000_Connect.Adar1000_Connect" Id="0c394350-2fb7-4b45-96df-84097718bedb">
+                  <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                  <Name Metadata="Step Name">Connect ADAR1000</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="Manta Ray.Adar1000_Init.Adar1000_Init" Id="e9bad099-d5aa-49a6-b503-b4d63456b681">
+                  <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                  <lnaBias>-4.8</lnaBias>
+                  <paBias>-4.8</paBias>
+                  <Name Metadata="Step Name">Initialize ADAR1000</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="f9ff3678-971b-4b3c-bdf1-e1c67b0ee113">
+                  <Name Metadata="Step Name">Verify Currents (1)</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="3e693817-1cb8-4796-ad86-2e598481d384">
+                      <Min>0.8</Min>
+                      <Max>1.2</Max>
+                      <TestVerdict>Pass</TestVerdict>
+                      <TestName>Query 4V Current</TestName>
+                      <Units>A</Units>
+                      <IsControlledByParent>false</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                      <Name Metadata="Step Name">Query 4V Current</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="841786cc-173d-4269-b9fa-a74bc40cab42">
+                      <Min>0.075</Min>
+                      <Max>0.15</Max>
+                      <TestVerdict>Pass</TestVerdict>
+                      <TestName>Query -6V Current</TestName>
+                      <Units>A</Units>
+                      <IsControlledByParent>false</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+                      <Name Metadata="Step Name">Query -6V Current</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                  <BreakConditions>BreakOnError, BreakOnFail</BreakConditions>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureVoltage" Id="a0161b77-f610-4f8c-80a4-161ec6ca2eda">
+                  <Volt>5.7</Volt>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                  <Name Metadata="Step Name">Turn on 5.7V</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureOverCurrent" Id="d3972631-10f3-4393-bd05-fc4756755c79">
+                      <Current>0.2</Current>
+                      <IsControlledByParent>true</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                      <Name Metadata="Step Name">Configure OverCurrent</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="62eca280-856e-49fd-bad6-fa1eaf63eb49">
+                      <OutputState>On</OutputState>
+                      <IsControlledByParent>true</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                      <Name Metadata="Step Name">Configure State</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="775925db-8998-4910-bdd3-42cd2b547d76">
+                  <Min>0.05</Min>
+                  <Max>0.15</Max>
+                  <TestVerdict>Pass</TestVerdict>
+                  <TestName>Query Current</TestName>
+                  <Units>A</Units>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                  <Name Metadata="Step Name">Query Current</Name>
+                  <ChildTestSteps />
+                  <BreakConditions>BreakOnError, BreakOnFail</BreakConditions>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureVoltage" Id="d11e50ea-e3ea-4e1b-b7eb-269404a11ebc">
+                  <Volt>5.7</Volt>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                  <Name Metadata="Step Name">Raise 5.7V OC</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureOverCurrent" Id="65a00757-8145-43ae-927f-7a53f93ec9de">
+                      <Current>1.5</Current>
+                      <IsControlledByParent>true</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                      <Name Metadata="Step Name">Configure OverCurrent</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="3592a876-22df-48a9-9a2b-6bc0b80eae6a">
+                      <OutputState>On</OutputState>
+                      <IsControlledByParent>true</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                      <Name Metadata="Step Name">Configure State</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="c11f32e2-3a14-4f33-adcb-7a39aabb92eb">
+                  <DelaySecs>0.1</DelaySecs>
+                  <Name Metadata="Step Name">Delay (5)</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureVoltage" Id="eae35305-42a2-4ca4-bc8f-a335881f440e">
+                  <Volt>18</Volt>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+                  <Name Metadata="Step Name">Turn on 18V</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureOverCurrent" Id="5b5d49b1-5b05-49e5-bf6f-e92395a8e057">
+                      <Current>0.5</Current>
+                      <IsControlledByParent>true</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+                      <Name Metadata="Step Name">Configure OverCurrent</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="8d19943c-80c2-4354-9faa-0d56f66a6156">
+                      <OutputState>On</OutputState>
+                      <IsControlledByParent>true</IsControlledByParent>
+                      <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+                      <Name Metadata="Step Name">Configure State</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.SweepParameterRangeStep" Id="237b5b20-9e96-4a8e-bec8-fc89056d6373" OpenTap.Visibility="Visible">
+                  <SweepStart>1</SweepStart>
+                  <SweepStop>16</SweepStop>
+                  <SweepEnd>16</SweepEnd>
+                  <SweepStep>1</SweepStep>
+                  <SweepPoints>16</SweepPoints>
+                  <SweepBehavior>Linear</SweepBehavior>
+                  <Selected>
+                    <KeyValuePairOfString>
+                      <Key>Parameters \ Adar1000 Channel Settings \ Adar1000 Channel</Key>
+                      <Value>true</Value>
+                    </KeyValuePairOfString>
+                  </Selected>
+                  <Name Metadata="Step Name">Sweep Range {Parameters}</Name>
+                  <ChildTestSteps>
+                    <TestStep type="Manta Ray.Adar1000Rx.Adar1000Rx" Id="33c9aa2a-5bf5-4acc-a899-af64a0040028">
+                      <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                      <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="237b5b20-9e96-4a8e-bec8-fc89056d6373">1</Channel>
+                      <Enable>false</Enable>
+                      <gain>0</gain>
+                      <attenuation>true</attenuation>
+                      <phase>0</phase>
+                      <lnaBias>-4.8</lnaBias>
+                      <Name Metadata="Step Name">Set ADAR1000 Rx (1)</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="Manta Ray.Adar1000Tx.Adar1000Tx" Id="a12d2040-4ade-4fcb-b7b7-66f0a1554237">
+                      <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                      <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="237b5b20-9e96-4a8e-bec8-fc89056d6373">1</Channel>
+                      <Enable>false</Enable>
+                      <gain>0</gain>
+                      <attenuation>true</attenuation>
+                      <phase>0</phase>
+                      <paBias>-4.8</paBias>
+                      <ExternalTR>false</ExternalTR>
+                      <Name Metadata="Step Name">Set ADAR1000 Tx (1)</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Adar1000_x0020_Channel>1</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Adar1000_x0020_Channel>
+                </TestStep>
+              </ChildTestSteps>
+              <BreakConditions>BreakOnError, BreakOnFail</BreakConditions>
+            </TestStep>
+          </ChildTestSteps>
+          <BreakConditions>0</BreakConditions>
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.BasicSteps.IfStep" Id="b47f91f4-df34-4cda-90c8-9c3cca43179a">
+          <InputVerdict>
+            <PropertyName>OpenTap.TestStep|Verdict</PropertyName>
+            <Step>bb1b3257-b836-4a21-ac79-62788e3d3e8e</Step>
+          </InputVerdict>
+          <TargetVerdict>Fail</TargetVerdict>
+          <Action>RunChildren</Action>
+          <Name Metadata="Step Name">Shut down if Fail</Name>
+          <ChildTestSteps>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="31c5669b-726c-409c-910b-f5c41d623b8c">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+              <Name Metadata="Step Name">Turn off 18V</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="b48ccc51-a572-45a9-abbb-bc5bde7839a5">
+              <DelaySecs>0.1</DelaySecs>
+              <Name Metadata="Step Name">Delay (6)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="b5de87fa-0332-4193-b511-72aae53599a6">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+              <Name Metadata="Step Name">Turn off 5.7V</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="511637d1-1e70-4bbb-a040-602474a2f2be">
+              <DelaySecs>0.1</DelaySecs>
+              <Name Metadata="Step Name">Delay (3)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="09006891-50ee-49df-9140-e317af7f098d">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+              <Name Metadata="Step Name">Turn off -6V</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="df316cea-05c6-4c15-ac9c-1c6a3fcdc2f2">
+              <DelaySecs>0.1</DelaySecs>
+              <Name Metadata="Step Name">Delay (4)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="45d607d8-6854-4a73-9778-2ca78d08a765">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+              <Name Metadata="Step Name">Turn off 4V</Name>
+              <ChildTestSteps />
+            </TestStep>
+          </ChildTestSteps>
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.BasicSteps.IfStep" Id="762ee0e2-8136-441d-9712-212dae99ec67">
+          <InputVerdict>
+            <PropertyName>OpenTap.TestStep|Verdict</PropertyName>
+            <Step>bb1b3257-b836-4a21-ac79-62788e3d3e8e</Step>
+          </InputVerdict>
+          <TargetVerdict>Error</TargetVerdict>
+          <Action>RunChildren</Action>
+          <Name Metadata="Step Name">Shut down if Error</Name>
+          <ChildTestSteps>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="33d12f64-fe65-4333-ad32-695bc32cb48a">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+              <Name Metadata="Step Name">Turn off 18V</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="bfe3d03c-f376-4e40-9f55-90afc3ab5c00">
+              <DelaySecs>0.1</DelaySecs>
+              <Name Metadata="Step Name">Delay (7)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="ec77bb84-51d3-4164-bc1a-d853aedf1191">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+              <Name Metadata="Step Name">Turn off 5.7V (1)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="dc4b2f89-64f9-4414-8991-3d690da687a4">
+              <DelaySecs>0.1</DelaySecs>
+              <Name Metadata="Step Name">Delay (1)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="2ad3c16f-3cd5-4a5b-908c-7c3eadab6efa">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+              <Name Metadata="Step Name">Turn off -6V (1)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="5c04c893-353f-4947-b06f-01dab069421e">
+              <DelaySecs>0.1</DelaySecs>
+              <Name Metadata="Step Name">Delay (2)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="51ce37a0-28b9-4185-863d-ef8a9b00a03e">
+              <OutputState>Off</OutputState>
+              <IsControlledByParent>false</IsControlledByParent>
+              <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+              <Name Metadata="Step Name">Turn off 4V (1)</Name>
+              <ChildTestSteps />
+            </TestStep>
+          </ChildTestSteps>
+        </TestStep>
+      </ChildTestSteps>
+      <OpenTap.Description>References a test plan from an external file directly, without having to store the test plan as steps in the current test plan.</OpenTap.Description>
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="7ac27a1a-f001-4091-8360-c0769219eb95">
+      <DelaySecs>1</DelaySecs>
+      <Name Metadata="Step Name">Delay (8)</Name>
+      <ChildTestSteps />
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="519f6db4-15fd-4f50-a27f-28cede0d28b8" OpenTap.Visibility="Visible">
+      <Name Metadata="Step Name">Rx</Name>
+      <ChildTestSteps>
+        <TestStep type="OpenTap.Plugins.BasicSteps.SweepParameterStep" Id="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c" OpenTap.Visibility="Visible">
+          <SweepValues>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+            </SweepRow>
+          </SweepValues>
+          <Selected>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Adar1000 Channel Settings \ Adar1000 Channel</Key>
+              <Value>false</Value>
+            </KeyValuePairOfString>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Instrument Settings \ Path</Key>
+              <Value>false</Value>
+            </KeyValuePairOfString>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Load File \ State Filename</Key>
+              <Value>true</Value>
+            </KeyValuePairOfString>
+          </Selected>
+          <Name Metadata="Step Name">Sweep {Parameters}</Name>
+          <ChildTestSteps>
+            <TestStep type="OpenTap.Plugins.Switch.CloseChannel" Id="41062aed-275b-4096-99dc-bd254af283e8">
+              <ListOfAvailablePaths>
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+                <Element />
+              </ListOfAvailablePaths>
+              <Switch Source="OpenTap.InstrumentSettings">L8990M</Switch>
+              <selectedPath Parameter="Parameters \ Instrument Settings \ Path" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">Ch 16 Rx</selectedPath>
+              <Name Metadata="Step Name">L8990M (1)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PNAX.RecalState" Id="07e08f10-d978-4307-ad2c-b41303387901">
+              <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+              <StateFile Parameter="Parameters \ Load File \ State Filename" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">MANTA_RAY_BFC_RX_CH16.csa</StateFile>
+              <Name Metadata="Step Name">Recall State (2)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.SweepParameterStep" Id="b7b4d513-b741-4ec5-bd48-06d42ef6a816" OpenTap.Visibility="Visible">
+              <SweepValues>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+                </SweepRow>
+              </SweepValues>
+              <Selected>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Adar1000 Channel Settings \ Rx Attenuation</Key>
+                  <Value>false</Value>
+                </KeyValuePairOfString>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Adar1000 Channel Settings \ Rx Gain</Key>
+                  <Value>false</Value>
+                </KeyValuePairOfString>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Adar1000 Channel Settings \ Rx Phase</Key>
+                  <Value>true</Value>
+                </KeyValuePairOfString>
+              </Selected>
+              <Name Metadata="Step Name">Sweep {Parameters}</Name>
+              <ChildTestSteps>
+                <TestStep type="Manta Ray.Adar1000Rx.Adar1000Rx" Id="58181e12-1d24-4309-a5a5-b5559bdd3bc6">
+                  <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Scope="519f6db4-15fd-4f50-a27f-28cede0d28b8" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                  <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">16</Channel>
+                  <Enable>true</Enable>
+                  <gain Parameter="Parameters \ Adar1000 Channel Settings \ Rx Gain" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">127</gain>
+                  <attenuation Parameter="Parameters \ Adar1000 Channel Settings \ Rx Attenuation" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">false</attenuation>
+                  <phase Parameter="Parameters \ Adar1000 Channel Settings \ Rx Phase" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">357.1875</phase>
+                  <lnaBias>-1</lnaBias>
+                  <Name Metadata="Step Name">Set ADAR1000 Rx</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="3ffe76bb-482e-46fd-9bdb-a6ee810c4514">
+                  <DelaySecs>0.5</DelaySecs>
+                  <Name Metadata="Step Name">Delay</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="Manta Ray.Adar1000_Temp.Adar1000_Temp" Id="98628a8d-335f-4872-8aed-4c00c17e7af0">
+                  <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                  <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">16</Channel>
+                  <Name Metadata="Step Name">Get ADAR1000 Temp</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="dbd39d91-90e1-4d2a-8d62-920a5f2e2c9d">
+                  <Min>0</Min>
+                  <Max>1.6</Max>
+                  <TestVerdict>Pass</TestVerdict>
+                  <TestName>Query 5.7V Current</TestName>
+                  <Units>A</Units>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                  <Name Metadata="Step Name">Query 5.7V Current</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.AdiBasicSteps.RecordData" Id="c7d0b9a0-688c-4cfe-b24e-13f288fe67ca">
+                      <Desc1>Gain State</Desc1>
+                      <DoubleValue1 Parameter="Parameters \ Adar1000 Channel Settings \ Rx Gain" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">127</DoubleValue1>
+                      <Desc2>Phase</Desc2>
+                      <DoubleValue2 Parameter="Parameters \ Adar1000 Channel Settings \ Rx Phase" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">357.1875</DoubleValue2>
+                      <Desc3>Channel</Desc3>
+                      <DoubleValue3 Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">16</DoubleValue3>
+                      <Desc4></Desc4>
+                      <DoubleValue4>NaN</DoubleValue4>
+                      <Desc5>Mode</Desc5>
+                      <StringValue5>Rx</StringValue5>
+                      <Name Metadata="Step Name">Record Data</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="3b716aab-2b30-4ab7-8dc1-bcb753fdf412">
+                  <Min>0</Min>
+                  <Max>1.2</Max>
+                  <TestVerdict>Pass</TestVerdict>
+                  <TestName>Query 4V Current</TestName>
+                  <Units>A</Units>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                  <Name Metadata="Step Name">Query 4V Current</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.AdiBasicSteps.RecordData" Id="68e3875d-80aa-4f91-beed-839fdbc5b89b">
+                      <Desc1>Gain State</Desc1>
+                      <DoubleValue1 Parameter="Parameters \ Adar1000 Channel Settings \ Rx Gain" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">127</DoubleValue1>
+                      <Desc2>Phase</Desc2>
+                      <DoubleValue2 Parameter="Parameters \ Adar1000 Channel Settings \ Rx Phase" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">357.1875</DoubleValue2>
+                      <Desc3>Channel</Desc3>
+                      <DoubleValue3 Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">16</DoubleValue3>
+                      <Desc4></Desc4>
+                      <DoubleValue4>NaN</DoubleValue4>
+                      <Desc5>Mode</Desc5>
+                      <StringValue5>Rx</StringValue5>
+                      <Name Metadata="Step Name">Record Data</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PNAX.Measure" Id="42b161e7-ec35-4a69-adec-b8ac079c33ee">
+                  <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+                  <AutoSelectChannels>true</AutoSelectChannels>
+                  <channels>1, 2, 4</channels>
+                  <sweepMode>SING</sweepMode>
+                  <Name Metadata="Step Name">Trigger Channels (2) (1)</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PNAX.StoreData" Id="aa059aa8-03da-4d8b-849a-49f22538d14c">
+                  <GroupByChannel>true</GroupByChannel>
+                  <EnableLimits>false</EnableLimits>
+                  <LimitsFile />
+                  <UseTraceTitle>false</UseTraceTitle>
+                  <RoundXValues>false</RoundXValues>
+                  <RoundXNumberDigits>2</RoundXNumberDigits>
+                  <RoundYValues>false</RoundYValues>
+                  <RoundYNumberDigits>2</RoundYNumberDigits>
+                  <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+                  <AutoSelectChannels>true</AutoSelectChannels>
+                  <channels>1, 2, 4</channels>
+                  <MetaData>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                  </MetaData>
+                  <Name Metadata="Step Name">Store Trace Data</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataDouble" Id="80db0c2e-3956-4731-9846-561751f01f9d">
+                      <Desc>Gain State</Desc>
+                      <Value Parameter="Parameters \ Adar1000 Channel Settings \ Rx Gain" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">127</Value>
+                      <Name Metadata="Step Name">Store Gain State</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataDouble" Id="cb56fdb5-4d6a-4eb1-aca2-2398c22a1095">
+                      <Desc>Phase</Desc>
+                      <Value Parameter="Parameters \ Adar1000 Channel Settings \ Rx Phase" Scope="b7b4d513-b741-4ec5-bd48-06d42ef6a816">357.1875</Value>
+                      <Name Metadata="Step Name">Store Phase</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataInt" Id="158a355b-7f93-4526-acbd-2607c4816727">
+                      <Desc>Channel</Desc>
+                      <Value Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">16</Value>
+                      <Name Metadata="Step Name">Store Channel</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataString" Id="59d7951c-1573-45f5-a678-b97ab7737d0a">
+                      <Desc>Mode</Desc>
+                      <Value>Rx</Value>
+                      <Name Metadata="Step Name">Store Mode</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+              </ChildTestSteps>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Gain>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Attenuation>false</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Attenuation>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>357.1875</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Rx_x0020_Phase>
+            </TestStep>
+            <TestStep type="Manta Ray.Adar1000Rx.Adar1000Rx" Id="a34fddc3-0c05-4b80-8821-479282ae4db0">
+              <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Scope="519f6db4-15fd-4f50-a27f-28cede0d28b8" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+              <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="1cfeb0bf-6968-4c02-9fa5-c0816b1caa2c">16</Channel>
+              <Enable>false</Enable>
+              <gain>0</gain>
+              <attenuation>true</attenuation>
+              <phase>0</phase>
+              <lnaBias>-4.8</lnaBias>
+              <Name Metadata="Step Name">Set ADAR1000 Rx</Name>
+              <ChildTestSteps />
+            </TestStep>
+          </ChildTestSteps>
+          <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_RX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+          <Parameters_x0020__x005C__x0020_Instrument_x0020_Settings_x0020__x005C__x0020_Path>Ch 16 Rx</Parameters_x0020__x005C__x0020_Instrument_x0020_Settings_x0020__x005C__x0020_Path>
+          <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Adar1000_x0020_Channel>16</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Adar1000_x0020_Channel>
+        </TestStep>
+      </ChildTestSteps>
+      <OpenTap.Description>References a test plan from an external file directly, without having to store the test plan as steps in the current test plan.</OpenTap.Description>
+      <Parameters_x0020__x005C__x0020_Resources_x0020__x005C__x0020_ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</Parameters_x0020__x005C__x0020_Resources_x0020__x005C__x0020_ADAR1000>
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="f773ff72-1074-4527-b866-de433b4bb1a0">
+      <DelaySecs>1</DelaySecs>
+      <Name Metadata="Step Name">Delay (9)</Name>
+      <ChildTestSteps />
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="f6696312-c1f3-430e-a710-9d96ca4b2cfa" OpenTap.Visibility="Visible">
+      <Name Metadata="Step Name">Tx</Name>
+      <ChildTestSteps>
+        <TestStep type="Manta Ray.PA_ON.PA_ON" Id="d7aa5dd9-e580-48ad-a0c3-18e9e1a241f8">
+          <Talise Source="OpenTap.DutSettings">Talise</Talise>
+          <PAon>true</PAon>
+          <Name Metadata="Step Name">PA_ON</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.FunctionGenerator.ConfigureWaveform" Id="0045058d-fbd2-4c83-a4f9-d826fd2996c1" OpenTap.Visibility="Visible">
+          <IsControlledByParent>false</IsControlledByParent>
+          <FunctionGenerator type="OpenTap.Plugins.FunctionGenerator._33xxx" Source="OpenTap.InstrumentSettings">33xxx</FunctionGenerator>
+          <Name Metadata="Step Name">Configure Waveform</Name>
+          <ChildTestSteps>
+            <TestStep type="OpenTap.Plugins.FunctionGenerator.ConfigureShape" Id="87e4c31a-ca56-4ada-9476-99da276ef467">
+              <Shape>SQU</Shape>
+              <DutyCycle>30</DutyCycle>
+              <IsControlledByParent>true</IsControlledByParent>
+              <FunctionGenerator type="OpenTap.Plugins.FunctionGenerator._33xxx" Source="OpenTap.InstrumentSettings">33xxx</FunctionGenerator>
+              <Name Metadata="Step Name">Configure Shape</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.FunctionGenerator.ConfigureVoltageAmplitude" Id="0960ec84-eecf-4992-a101-bf260b28e6de">
+              <vhigh>1.8</vhigh>
+              <vlow>0</vlow>
+              <IsControlledByParent>true</IsControlledByParent>
+              <FunctionGenerator type="OpenTap.Plugins.FunctionGenerator._33xxx" Source="OpenTap.InstrumentSettings">33xxx</FunctionGenerator>
+              <Name Metadata="Step Name">Configure Voltage Amplitude</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.FunctionGenerator.ConfigureFrequency" Id="6c84a368-1804-48db-94de-e8ed8506678f">
+              <Frequency>2000</Frequency>
+              <IsControlledByParent>true</IsControlledByParent>
+              <FunctionGenerator type="OpenTap.Plugins.FunctionGenerator._33xxx" Source="OpenTap.InstrumentSettings">33xxx</FunctionGenerator>
+              <Name Metadata="Step Name">Configure Frequency</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.FunctionGenerator.ConfigurePhase" Id="edb2b57c-9d2d-4330-af91-478c73ab7ba9">
+              <Phase>0</Phase>
+              <IsControlledByParent>true</IsControlledByParent>
+              <FunctionGenerator type="OpenTap.Plugins.FunctionGenerator._33xxx" Source="OpenTap.InstrumentSettings">33xxx</FunctionGenerator>
+              <Name Metadata="Step Name">Configure Phase</Name>
+              <ChildTestSteps />
+            </TestStep>
+          </ChildTestSteps>
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.FunctionGenerator.ConfigureOutputStates" Id="16fd7276-f3dd-42df-a770-53e9fe66ca81">
+          <OutputState>On</OutputState>
+          <IsControlledByParent>false</IsControlledByParent>
+          <FunctionGenerator type="OpenTap.Plugins.FunctionGenerator._33xxx" Source="OpenTap.InstrumentSettings">33xxx</FunctionGenerator>
+          <Name Metadata="Step Name">Configure Output State</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.BasicSteps.SweepParameterStep" Id="ff8c3bc5-40c2-47a7-b612-56032915c791" OpenTap.Visibility="Visible">
+          <SweepValues>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+            <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+              <Enabled>false</Enabled>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+            </SweepRow>
+          </SweepValues>
+          <Selected>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Adar1000 Channel Settings \ Adar1000 Channel</Key>
+              <Value>false</Value>
+            </KeyValuePairOfString>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Adar1000 Channel Settings \ PA bias level</Key>
+              <Value>true</Value>
+            </KeyValuePairOfString>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Instrument Settings \ Path</Key>
+              <Value>false</Value>
+            </KeyValuePairOfString>
+            <KeyValuePairOfString>
+              <Key>Parameters \ Load File \ State Filename</Key>
+              <Value>false</Value>
+            </KeyValuePairOfString>
+          </Selected>
+          <Name Metadata="Step Name">Sweep {Parameters}</Name>
+          <ChildTestSteps>
+            <TestStep type="OpenTap.Plugins.Switch.CloseChannel" Id="7cf7112e-197a-48e2-9499-c47a595e0964">
+              <ListOfAvailablePaths />
+              <Switch />
+              <selectedPath Parameter="Parameters \ Instrument Settings \ Path" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">Ch 16 Tx</selectedPath>
+              <Name Metadata="Step Name">L8990M</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.PNAX.RecalState" Id="5b3bcc6c-654d-4682-a5ad-48c5453271b4">
+              <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+              <StateFile Parameter="Parameters \ Load File \ State Filename" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">MANTA_RAY_BFC_TX_CH16.csa</StateFile>
+              <Name Metadata="Step Name">Recall State (1)</Name>
+              <ChildTestSteps />
+            </TestStep>
+            <TestStep type="OpenTap.Plugins.BasicSteps.SweepParameterStep" Id="0c5498fd-f972-4b48-8909-1432f51a9011" OpenTap.Visibility="Visible">
+              <SweepValues>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+                <SweepRow type="OpenTap.Plugins.BasicSteps.SweepRow">
+                  <Enabled>true</Enabled>
+                  <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+                </SweepRow>
+              </SweepValues>
+              <Selected>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Adar1000 Channel Settings \ Tx Gain</Key>
+                  <Value>true</Value>
+                </KeyValuePairOfString>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Adar1000 Channel Settings \ Tx Attenuation</Key>
+                  <Value>false</Value>
+                </KeyValuePairOfString>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Adar1000 Channel Settings \ Tx Phase</Key>
+                  <Value>false</Value>
+                </KeyValuePairOfString>
+                <KeyValuePairOfString>
+                  <Key>Parameters \ Sweep Properties \ Power</Key>
+                  <Value>false</Value>
+                </KeyValuePairOfString>
+              </Selected>
+              <Name Metadata="Step Name">Sweep {Parameters}</Name>
+              <ChildTestSteps>
+                <TestStep type="Manta Ray.Adar1000Tx.Adar1000Tx" Id="16ee2bef-d907-4a46-aaf1-16a6f49c8501">
+                  <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                  <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</Channel>
+                  <Enable>true</Enable>
+                  <gain Parameter="Parameters \ Adar1000 Channel Settings \ Tx Gain" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">127</gain>
+                  <attenuation Parameter="Parameters \ Adar1000 Channel Settings \ Tx Attenuation" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">false</attenuation>
+                  <phase Parameter="Parameters \ Adar1000 Channel Settings \ Tx Phase" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">0</phase>
+                  <paBias Parameter="Parameters \ Adar1000 Channel Settings \ PA bias level" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">-2</paBias>
+                  <ExternalTR>true</ExternalTR>
+                  <Name Metadata="Step Name">Set ADAR1000 Tx</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="1959049f-176a-4ad4-a059-56fb65bdfd07" OpenTap.Visibility="Visible">
+                  <DelaySecs>0.5</DelaySecs>
+                  <Name Metadata="Step Name">Delay</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="Manta Ray.Adar1000_Temp.Adar1000_Temp" Id="01bb245f-2d03-4d56-a21e-857d042330c0">
+                  <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+                  <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</Channel>
+                  <Name Metadata="Step Name">Get ADAR1000 Temp (1)</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="25e572bc-5e53-4ba9-9cfa-a15216424105">
+                  <Min>0.05</Min>
+                  <Max>0.15</Max>
+                  <TestVerdict>Fail</TestVerdict>
+                  <TestName>Query 5.7V Current</TestName>
+                  <Units>A</Units>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+                  <Name Metadata="Step Name">Query 5.7V Current</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.AdiBasicSteps.RecordData" Id="5d432437-306f-4d33-8302-58c3450fbdf6">
+                      <Desc1>Gain State</Desc1>
+                      <DoubleValue1 Parameter="Parameters \ Adar1000 Channel Settings \ Tx Gain" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">127</DoubleValue1>
+                      <Desc2>Phase</Desc2>
+                      <DoubleValue2 Parameter="Parameters \ Adar1000 Channel Settings \ Tx Phase" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">0</DoubleValue2>
+                      <Desc3>Channel</Desc3>
+                      <DoubleValue3 Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</DoubleValue3>
+                      <Desc4>Input Power</Desc4>
+                      <DoubleValue4 Parameter="Parameters \ Sweep Properties \ Power" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">3</DoubleValue4>
+                      <Desc5>Mode</Desc5>
+                      <StringValue5>Tx</StringValue5>
+                      <Name Metadata="Step Name">Record Data</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="2aeaecba-9b9c-43fc-8983-5b682093dea1" OpenTap.Visibility="Visible">
+                  <Min>0.2</Min>
+                  <Max>1.2</Max>
+                  <TestVerdict>Pass</TestVerdict>
+                  <TestName>Query 4V Current</TestName>
+                  <Units>A</Units>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+                  <Name Metadata="Step Name">Query 4V Current</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.AdiBasicSteps.RecordData" Id="a3fae1e4-f10b-49d0-9fdb-7453440aea6c">
+                      <Desc1>Gain State</Desc1>
+                      <DoubleValue1 Parameter="Parameters \ Adar1000 Channel Settings \ Tx Gain" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">127</DoubleValue1>
+                      <Desc2>Phase</Desc2>
+                      <DoubleValue2 Parameter="Parameters \ Adar1000 Channel Settings \ Tx Phase" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">0</DoubleValue2>
+                      <Desc3>Channel</Desc3>
+                      <DoubleValue3 Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</DoubleValue3>
+                      <Desc4>Input Power</Desc4>
+                      <DoubleValue4 Parameter="Parameters \ Sweep Properties \ Power" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">3</DoubleValue4>
+                      <Desc5>Mode</Desc5>
+                      <StringValue5>Tx</StringValue5>
+                      <Name Metadata="Step Name">Record Data</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PowerSupply.QueryCurrent" Id="76ec00a3-d0fe-4e47-b5a0-d0494d5f48c6" OpenTap.Visibility="Visible">
+                  <Min>0</Min>
+                  <Max>1</Max>
+                  <TestVerdict>Pass</TestVerdict>
+                  <TestName>Query 18V Current</TestName>
+                  <Units>A</Units>
+                  <IsControlledByParent>false</IsControlledByParent>
+                  <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+                  <Name Metadata="Step Name">Query 18V Current</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.AdiBasicSteps.RecordData" Id="6a97d0b7-a0fe-48ea-99be-5a7349ade427">
+                      <Desc1>Gain State</Desc1>
+                      <DoubleValue1 Parameter="Parameters \ Adar1000 Channel Settings \ Tx Gain" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">127</DoubleValue1>
+                      <Desc2>Phase</Desc2>
+                      <DoubleValue2 Parameter="Parameters \ Adar1000 Channel Settings \ Tx Phase" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">0</DoubleValue2>
+                      <Desc3>Channel</Desc3>
+                      <DoubleValue3 Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</DoubleValue3>
+                      <Desc4>Input Power</Desc4>
+                      <DoubleValue4 Parameter="Parameters \ Sweep Properties \ Power" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">3</DoubleValue4>
+                      <Desc5>Mode</Desc5>
+                      <StringValue5>Tx</StringValue5>
+                      <Name Metadata="Step Name">Record Data</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PNAX.Measure" Id="a258775c-99d4-49f3-983c-bc034e381540">
+                  <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+                  <AutoSelectChannels>true</AutoSelectChannels>
+                  <channels>1</channels>
+                  <sweepMode>CONT</sweepMode>
+                  <Name Metadata="Step Name">Trigger Channels (2)</Name>
+                  <ChildTestSteps />
+                </TestStep>
+                <TestStep type="OpenTap.Plugins.PNAX.StoreData" Id="f110787b-9af2-4fdc-9efb-3bde40f3968c">
+                  <GroupByChannel>true</GroupByChannel>
+                  <EnableLimits>false</EnableLimits>
+                  <LimitsFile />
+                  <UseTraceTitle>false</UseTraceTitle>
+                  <RoundXValues>false</RoundXValues>
+                  <RoundXNumberDigits>2</RoundXNumberDigits>
+                  <RoundYValues>false</RoundYValues>
+                  <RoundYNumberDigits>2</RoundYNumberDigits>
+                  <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+                  <AutoSelectChannels>true</AutoSelectChannels>
+                  <channels>1</channels>
+                  <MetaData>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                    <ValueTupleOfString>(, )</ValueTupleOfString>
+                  </MetaData>
+                  <Name Metadata="Step Name">Store Trace Data</Name>
+                  <ChildTestSteps>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataDouble" Id="5d90c220-f076-4f3f-8fe7-d7d10334870c">
+                      <Desc>Gain State</Desc>
+                      <Value Parameter="Parameters \ Adar1000 Channel Settings \ Tx Gain" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">127</Value>
+                      <Name Metadata="Step Name">Store Gain State</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataDouble" Id="5f53bb36-6a31-4dc1-b070-763065ff7925">
+                      <Desc>Phase</Desc>
+                      <Value Parameter="Parameters \ Adar1000 Channel Settings \ Tx Phase" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">0</Value>
+                      <Name Metadata="Step Name">Store Phase</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataInt" Id="43622e01-0377-4b6f-bc09-1f8bb35e480c">
+                      <Desc>Channel</Desc>
+                      <Value Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</Value>
+                      <Name Metadata="Step Name">Store Channel</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataDouble" Id="e51bed93-2160-4364-b2ab-02011a26fc2e">
+                      <Desc>Input Power</Desc>
+                      <Value Parameter="Parameters \ Sweep Properties \ Power" Scope="0c5498fd-f972-4b48-8909-1432f51a9011">3</Value>
+                      <Name Metadata="Step Name">Store Input Power</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                    <TestStep type="OpenTap.Plugins.PNAX.LMS.StoreDataString" Id="ceefc40f-8377-4441-9e09-ab03fd9cf3d6">
+                      <Desc>Mode</Desc>
+                      <Value>Tx</Value>
+                      <Name Metadata="Step Name">Store Mode</Name>
+                      <ChildTestSteps />
+                    </TestStep>
+                  </ChildTestSteps>
+                </TestStep>
+              </ChildTestSteps>
+              <Parameters_x0020__x005C__x0020_Sweep_x0020_Properties_x0020__x005C__x0020_Power>3</Parameters_x0020__x005C__x0020_Sweep_x0020_Properties_x0020__x005C__x0020_Power>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Phase>0</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Phase>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Attenuation>false</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Attenuation>
+              <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>127</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Tx_x0020_Gain>
+            </TestStep>
+            <TestStep type="Manta Ray.Adar1000Tx.Adar1000Tx" Id="e480d9a4-b331-4e32-a07c-3c4eee414228">
+              <ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Parameter="Parameters \ Resources \ ADAR1000" Source="OpenTap.DutSettings">BFC Tile</ADAR1000>
+              <Channel Parameter="Parameters \ Adar1000 Channel Settings \ Adar1000 Channel" Scope="ff8c3bc5-40c2-47a7-b612-56032915c791">16</Channel>
+              <Enable>false</Enable>
+              <gain>0</gain>
+              <attenuation>true</attenuation>
+              <phase>0</phase>
+              <paBias>-4.8</paBias>
+              <ExternalTR>false</ExternalTR>
+              <Name Metadata="Step Name">Set ADAR1000 Tx</Name>
+              <ChildTestSteps />
+            </TestStep>
+          </ChildTestSteps>
+          <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>-2</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_PA_x0020_bias_x0020_level>
+          <Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>MANTA_RAY_BFC_TX_CH16.csa</Parameters_x0020__x005C__x0020_Load_x0020_File_x0020__x005C__x0020_State_x0020_Filename>
+          <Parameters_x0020__x005C__x0020_Instrument_x0020_Settings_x0020__x005C__x0020_Path>Ch 16 Tx</Parameters_x0020__x005C__x0020_Instrument_x0020_Settings_x0020__x005C__x0020_Path>
+          <Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Adar1000_x0020_Channel>16</Parameters_x0020__x005C__x0020_Adar1000_x0020_Channel_x0020_Settings_x0020__x005C__x0020_Adar1000_x0020_Channel>
+        </TestStep>
+      </ChildTestSteps>
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="09cbd0d2-4cdf-4b06-9d44-d1e5b74c2131">
+      <DelaySecs>1</DelaySecs>
+      <Name Metadata="Step Name">Delay (10)</Name>
+      <ChildTestSteps />
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.SequenceStep" Id="ef1e68c8-e526-4bc4-adf2-7af2c387aac8" OpenTap.Visibility="Visible">
+      <Name Metadata="Step Name">Turn Off</Name>
+      <ChildTestSteps>
+        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="bb4eff4f-1fa7-41e3-a4fc-de7c10216b4f">
+          <OutputState>Off</OutputState>
+          <IsControlledByParent>false</IsControlledByParent>
+          <PowerSupply type="OpenTap.Plugins.PowerSupply.E36xx" Source="OpenTap.InstrumentSettings">18V</PowerSupply>
+          <Name Metadata="Step Name">Turn off 18V (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="bf42fc95-5754-40b1-8c4f-c42903a68169">
+          <DelaySecs>0.1</DelaySecs>
+          <Name Metadata="Step Name">Delay (7) (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="0f8c0a1b-6073-4ae6-9f24-247f04b1f36d">
+          <OutputState>Off</OutputState>
+          <IsControlledByParent>false</IsControlledByParent>
+          <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">5.7V</PowerSupply>
+          <Name Metadata="Step Name">Turn off 5.7V (1) (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="eefd6279-fa08-49d8-8936-bdcb43b44953">
+          <DelaySecs>0.1</DelaySecs>
+          <Name Metadata="Step Name">Delay (1) (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="6c9c3180-fe71-4fa5-90a0-9bdc16bf93bd">
+          <OutputState>Off</OutputState>
+          <IsControlledByParent>false</IsControlledByParent>
+          <PowerSupply type="OpenTap.Plugins.PowerSupply.N87xx" Source="OpenTap.InstrumentSettings">-6V</PowerSupply>
+          <Name Metadata="Step Name">Turn off -6V (1) (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.BasicSteps.DelayStep" Id="d80f56bc-e000-464a-a977-a342ab8bbd04">
+          <DelaySecs>0.1</DelaySecs>
+          <Name Metadata="Step Name">Delay (2) (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.PowerSupply.ConfigureState" Id="8b2ed987-8122-48e3-8bd4-5b89a2464bee">
+          <OutputState>Off</OutputState>
+          <IsControlledByParent>false</IsControlledByParent>
+          <PowerSupply type="OpenTap.Plugins.PowerSupply.N67xx" Source="OpenTap.InstrumentSettings">4V</PowerSupply>
+          <Name Metadata="Step Name">Turn off 4V (1) (1)</Name>
+          <ChildTestSteps />
+        </TestStep>
+        <TestStep type="OpenTap.Plugins.PNAX.Preset" Id="adea464d-031f-4f4e-8814-bdc005353af2">
+          <PNAX Source="OpenTap.InstrumentSettings">PNA-X</PNAX>
+          <Name Metadata="Step Name">Preset</Name>
+          <ChildTestSteps />
+        </TestStep>
+      </ChildTestSteps>
+    </TestStep>
+  </Steps>
+  <Parameters_x0020__x005C__x0020_Resources_x0020__x005C__x0020_ADAR1000 type="Manta Ray.BFC_Tile.BFC_Tile" Source="OpenTap.DutSettings">BFC Tile</Parameters_x0020__x005C__x0020_Resources_x0020__x005C__x0020_ADAR1000>
+  <Package.Dependencies>
+    <Package Name="OpenTAP" Version="^9.29.1+335b2cbe" />
+    <Package Name="PNA-X" Version="^0.5.14-beta.4+05591f5f" />
+  </Package.Dependencies>
+</TestPlan>
